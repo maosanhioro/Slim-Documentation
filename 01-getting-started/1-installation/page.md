@@ -1,15 +1,15 @@
 ---
-title: Installation
+title: インストール
 status: live
 ---
 
-### Composer Install
+### Composerによるインストール
 
-Install composer in your project:
+Composerをインストールします:
 
     curl -s https://getcomposer.org/installer | php
 
-Create a `composer.json` file in your project root:
+プロジェクトルートに`composer.json`を作成します。
 
     {
         "require": {
@@ -17,7 +17,7 @@ Create a `composer.json` file in your project root:
         }
     }
 
-Install via composer:
+Composer経由でSlim Frameworkをインストールします:
 
     php composer.phar install
 
@@ -26,10 +26,9 @@ Add this line to your application's `index.php` file:
     <?php
     require 'vendor/autoload.php';
 
-### Manual Install
+### 手動インストール
 
-Download and extract the Slim Framwork into your project directory and `require` it in your application's `index.php`
-file. You'll also need to register Slim's autoloader.
+プロジェクトディレクトリにSlim Frameworkをダウンロード・展開し、アプリケーションファイルである`index.php`で`require`します。オートローダー登録もします。
 
     <?php
     require 'Slim/Slim.php';

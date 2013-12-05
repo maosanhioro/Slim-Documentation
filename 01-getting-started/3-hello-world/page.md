@@ -3,16 +3,16 @@ title: Hello World
 status: live
 ---
 
-Instantiate a Slim application:
+Slimアプリケーションをインスタンス化します:
 
     $app = new \Slim\Slim();
 
-Define a HTTP GET route:
+HTTP GETルートを定義します:
 
     $app->get('/hello/:name', function ($name) {
         echo "Hello, $name";
     });
 
-Run the Slim application:
+Slimアプリケーションを実行します:
 
     $app->run();
