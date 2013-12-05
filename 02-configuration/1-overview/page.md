@@ -1,32 +1,31 @@
 ---
-title: Configuration Overview
+title: 設定の要約
 status: live
 ---
 
-There are two ways to apply settings to the Slim application. First during Slim application instantiation and second
-after instantiation. All settings can be applied at instatiation time by passing Slim’s constructor an associative
-array. All settings can be retrieved and modified after instantiation, however some of them can not be done simply by
-using the config application instance method but will be demonstrated as necessary below. Before I list the available
-settings, I want to quickly explain how you may define and inspect settings with your Slim application.
+Slimアプリケーションを設定するには2通りの方法があります。
+1つ目はSlimアプリケーションのインスタンス生成時に、もう1つはインスタンス生成後に。
+設定はSlimコンストラクタに対して連想配列を渡すことによってインスタンスごとに適用されます。全ての設定はインスタンス化した後に取得・更新することができます。しかしいくつかの設定はConfigアプリケーションのメソッドを通して簡単に実施することができませんが、以下のように必要に応じて実証されます。
+利用可能な設定一覧をお見せする前に、すぐに定義・実証できる方法を説明します。
 
-### During Instantiation
+### インスタンス生成時の設定
 
-To define settings upon instantiation, pass an associative array into the Slim constructor.
+インスタンス生成時に設定を定義するには、Slimコンストラクタに連想配列を渡します。
 
     <?php
     $app = new Slim(array(
         'debug' => true
     ));
 
-### After Instantiation
+### インスタンス生成後の設定
 
-To define settings after instantiation, the majority can use the config application instance method; the first
-argument is the setting name and the second argument is the setting value.
+インスタンス生成後に設定を定義するには、そのほとんどがConfigアプリケーションのメソッドを使用することで可能です。
+最初の引数は設定名、第二引数が値です。
 
     <?php
     $app->config('debug', false);
 
-You may also define multiple settings at once using an associative array:
+連想配列を使うことで一度に複数の設定を定義することもできます:
 
     <?php
     $app->config(array(
@@ -34,10 +33,10 @@ You may also define multiple settings at once using an associative array:
         'templates.path' => '../templates'
     ));
 
-To retrieve the value of a setting, you also use the config application instance method; however, you only pass one
-argument - the name of the setting you wish to inspect. If the setting you request does not exist, `null` is returned.
+設定値を取得するとき、Configアプリケーションのメソッドを使用することで取得できます。
+そのとき渡す引数は1つのみです。取得したい設定名を渡しますが、存在しない設定名の場合は`null`が返されます。
 
     <?php
     $settingValue = $app->config('templates.path'); //returns "../templates"
 
-You are not limited to the settings shown below; you may also define your own.
+以下にあるような限られた設定だけでなく、独自の設定することもあります。
