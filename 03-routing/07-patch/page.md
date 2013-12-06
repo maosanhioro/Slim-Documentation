@@ -1,20 +1,19 @@
 ---
-title: PATCH Routes
+title: PATCHルート
 status: live
 ---
 
-Use the Slim application's `patch()` method to map a callback function to a resource URI that is requested with
-the HTTP PATCH method.
+PATCHメソッドでリクエストするリソースURIにコールバック関数をマッピングするためには、Slimアプリケーションの`patch()`メソッドを使用します。
 
     <?php
     $app = new \Slim\Slim();
     $app->patch('/books/:id', function ($id) {
         // Patch book with given ID
+        //$idで指定されたbookを差分更新する
     });
 
-In this example, an HTTP PATCH request for “/books/1” will invoke the associated callback function, passing "1" as
-the callback function's argument.
+この例では、"/books/1"というPATCHリクエストが、引数"1"をコールバックの引数として渡し、該当するコールバック関数を呼び出すことを示しています。
 
-The first argument of the Slim application's `patch()` method is the resource URI. The last argument is anything that
-returns `true` for `is_callable()`. Typically, the last argument will be an [anonymous function][anon-func].
+Slimアプリケーションにおける`patch()`メソッドの最初の引数は、リソースURIとなります。第二引数は`is_callable()`からの`true`を返します。
+一般的に、第二引数は[anonymous function][anon-func]を指定します。
 

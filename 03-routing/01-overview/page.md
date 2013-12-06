@@ -1,11 +1,9 @@
 ---
-title: Routing Overview
+title: ルーティングの要約
 status: live
 ---
 
-The Slim Framework helps you map resource URIs to callback functions for specific HTTP request methods
-(e.g. GET, POST, PUT, DELETE, OPTIONS or HEAD). A Slim application will invoke the first route that matches the
-current HTTP request’s URI and method.
+Slim Frameworkは特定のHTTPリクエスト（例：GET, POST, PUT, DELETE, OPTIONSもしくはHEAD）の関数にコールバックすることでリソースURIにマッピングすることができます。
+Slimアプリケーションは、最初にHTTPリクエストURIとメソッドにマッチしたルートを呼び出します。
 
-If the Slim application does not find routes with URIs that match the HTTP request URI and method, it will
-automatically return a **404 Not Found** response.
+SlimアプリケーションがHTTPリクエストURIとメソッドにマッチしたルートを見つけられない場合は、自動的に**404 Not Found**を返します。

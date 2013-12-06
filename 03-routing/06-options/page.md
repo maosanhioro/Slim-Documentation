@@ -1,36 +1,32 @@
 ---
-title: OPTIONS Routes
+title: OPTIONSルート
 status: live
 ---
 
-Use the Slim application's `options()` method to map a callback function to a resource URI that is requested with
-the HTTP OPTIONS method.
+OPTIONSメソッドでリクエストするリソースURIにコールバック関数をマッピングするためには、Slimアプリケーションの`options()`メソッドを使用します。
 
     <?php
     $app = new \Slim\Slim();
     $app->options('/books/:id', function ($id) {
-        //Return response headers
+        //ヘッダーレスポンスを返却
     });
 
-In this example, an HTTP OPTIONS request for “/books/1” will invoke the associated callback function, passing "1" as
-the callback function's argument.
+この例では、"/books/1"というOPTIONSリクエストが、引数"1"をコールバックの引数として渡し、該当するコールバック関数を呼び出すことを示しています。
 
-The first argument of the Slim application's `options()` method is the resource URI. The last argument is anything that
-returns `true` for `is_callable()`. Typically, the last argument will be an [anonymous function][anon-func].
+Slimアプリケーションにおける`options()`メソッドの最初の引数は、リソースURIとなります。第二引数は`is_callable()`からの`true`を返します。
+一般的に、第二引数は[anonymous function][anon-func]を指定します。
 
-### Method Override
+### メソッドの上書き
 
-Unfortunately, modern browsers do not provide native support for HTTP OPTIONS requests. To work around this limitation,
-ensure your HTML form’s method attribute is “post”, then add a method override parameter to your HTML form like this:
+残念ながら、モダンなブラウザはOPTIONSリクエストをネイティブでサポートしていません。この制限を回避するには、HTMLフォームのメソッドを"post"で指定し、このようにHTMLフォームのメソッドを上書きすることで実現できます:
 
     <form action="/books/1" method="post">
-        ... other form fields here...
+        ... その他のフォームフィールド...
         <input type="hidden" name="_METHOD" value="OPTIONS"/>
         <input type="submit" value="Fetch Options For Book"/>
     </form>
 
-If you are using [Backbone.js][backbone] or a command-line HTTP client, you may also override the HTTP method by
-using the **X-HTTP-Method-Override** header.
+もし[Backbone.js][backbone]、またはコマンドラインのHTTPクライアントを使用しているなら、**X-HTTP-Method-Override**ヘッダーを通してHTTPメソッドを上書きすることもできます。
 
 [anon-func]: http://php.net/manual/en/functions.anonymous.php
 [backbone]: http://documentcloud.github.com/backbone/

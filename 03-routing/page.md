@@ -1,4 +1,4 @@
 ---
-title: Routing
+title: ルーティング
 status: live
 ---
