@@ -1,17 +1,15 @@
 ---
-title: Application Settings
+title: アプリケーション設定
 status: live
 ---
 
 ### mode
 
-This is an identifier for the application's current mode of operation. The mode does not affect a Slim application's
-internal functionality. Instead, the mode is only for you to optionally invoke your own code for a given mode with the
-`configMode()` application method.
+これはアプリケーションの現在の操作モード識別子です。モードはSlimアプリケーションの内部機能には影響しません。
+むしろ`configMode()`で与えられたモードに応じたそれぞれのコードを呼び出すためだけにあります。
 
-The application mode is declared during instantiation, either as an environment variable or as an argument to the
-Slim application constructor. It cannot be changed afterward. The mode may be anything you want — "development",
-"test", and "production" are typical, but you are free to use anything you want (e.g. "foo").
+アプリケーションモードは、環境変数、またはSlimアプリケーションのコンストラクタの引数としてインスタンス生成時に宣言されます。これはその後変更はできません。
+モード名は自由です。 "development"、"test"、"production"などはよくありますが、"foo"といったように好きなモード名を指定することもできます。
 
     <?php
     $app = new \Slim\Slim(array(
@@ -27,12 +25,11 @@ Default Value
 ### debug
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> Slim converts errors into `ErrorException` instances.
+    <strong>注意！</strong> Slimはエラーを`ErrorException`インスタンスに変換しています。
 </div>
 
-If debugging is enabled, Slim will use its built-in error handler to display diagnostic information for uncaught
-Exceptions. If debugging is disabled, Slim will instead invoke your custom error handler, passing it the otherwise
-uncaught Exception as its first and only argument.
+デバッグが有効の場合、Slimはキャッチできない例外について診断表示するために組み込みのエラーハンドラを使用します。
+逆にデバッグが無効の場合は、唯一の引数としてキャッチされなかった例外を渡し、カスタムエラーハンドラを呼び出します。
 
     <?php
     $app = new \Slim\Slim(array(
@@ -47,23 +44,23 @@ Default Value
 
 ### log.writer
 
-Use a custom log writer to direct logged messages to the appropriate output destination. By default, Slim's logger will
-write logged messages to `STDERR`. If you use a custom log writer, it must implement this interface:
+適切な出力先にログメッセージを記録するにはカスタムログライターを使用してください。
+標準でSlimロガーは`STDERR`に書き込みます。
+カスタムログライターを使用する場合は、インターフェイスについては実装する必要があります。
 
     public write(mixed $message, int $level);
 
-The `write()` method is responsible for sending the logged message (not necessarily a string) to the appropriate output
-destination (e.g. a text file, a database, or a remote web service).
+`write()`メソッドは、適切な出力先（例：テキストファイル、データベースもしくはWebサービス）に対してログ（必ずしも文字列だけではない）を送信します。
 
-To specify a custom log writer after instantiation you must access Slim's logger directly and use its `setWriter()` method:
+カスタムログライターを指定するには、インスタンス生成後であれば、Slimロガーに直接アクセスし、`setWriter()`を使用しなければなりません。
 
     <?php
-    // During instantiation
+    // インスタンス生成時の場合
     $app = new \Slim\Slim(array(
         'log.writer' => new \My\LogWriter()
     ));
 
-    // After instantiation
+    // インスタンス生成後の場合
     $log = $app->getLog();
     $log->setWriter(new \My\LogWriter());
 
@@ -76,10 +73,10 @@ Default Value
 ### log.level
 
 <div class="alert alert-info">
-    <strong>Heads Up!</strong> Use the constants defined in `\Slim\Log` instead of integers.
+    <strong>注意！</strong> 整数の代わりに`\Slim\Log`の定数を使用してください。
 </div>
 
-Slim has these log levels:
+Slimのログレベル:
 
 * \Slim\Log::EMERGENCY
 * \Slim\Log::ALERT
@@ -94,7 +91,7 @@ The `log.level` application setting determines which logged messages will be hon
 For example, if the `log.level` setting is `\Slim\Log::INFO`, debug messages will be ignored while info, warn,
 error, and fatal messages will be logged.
 
-To change this setting after instantiation you must access Slim's logger directly and use its `setLevel()` method.
+インスタンス生成後にこの設定を変更するには、Slimロガーに直接アクセスして`setLevel()`を使用しなければなりません。
 
     <?php
     // During instantiation
