@@ -1,13 +1,13 @@
 ---
-title: Custom HTTP Methods
+title: カスタムHTTPメソッド
 status: live
 ---
 
-### One route, multiple HTTP methods
+### 1ルートで複数のHTTPメソッドに対応
 
-Sometimes you may need a route to respond to multiple HTTP methods; sometimes you may need a route to respond to a
-custom HTTP method. You can accomplish both with the Route object's `via()` method. This example demonstrates how
-to map a resource URI to a callback that responds to multiple HTTP methods.
+時には複数のHTTPメソッドに対応するルートが必要だったり、カスタムHTTPメソッドに対応するルートが必要なことがあります。
+これはルートオブジェクトの`via()`を使うことで両方解決することができます。
+例では複数のHTTPメソッドに応答するコールバックにリソースURIをマッピングしています。
 
     <?php
     $app = new \Slim\Slim();
@@ -16,9 +16,9 @@ to map a resource URI to a callback that responds to multiple HTTP methods.
     })->via('GET', 'POST');
     $app->run();
 
-The route defined in this example will respond to both GET and POST requests for the resource identified by “/foo/bar”.
-Specify each appropriate HTTP method as a separate string argument to the Route object's `via()` method. Like other
-Route methods (e.g. `name()` and `conditions()`), the `via()` method is chainable:
+この例で定義されたルートはGET/POST両方のリクエストを受付け、"/foo/bar"で識別されるリソースに応答します。
+ルートオブジェクトの`via()`に個別の文字列引数として適切なHTTPメソッドを指定します。
+その他のルートメソッド（例：`name()`、`conditions()`）も含めてチェーンメソッドとなります:
 
     <?php
     $app = new \Slim\Slim();
@@ -27,11 +27,10 @@ Route methods (e.g. `name()` and `conditions()`), the `via()` method is chainabl
     })->via('GET', 'POST')->name('foo');
     $app->run();
 
-### One route, custom http methods
+### 1ルートでカスタムHTTPメソッドに対応
 
-The Route object's `via()` method is not limited to just GET, POST, PUT, DELETE, and OPTIONS methods. You may also
-specify your own custom HTTP methods (e.g. if you were responding to WebDAV HTTP requests). You can define a route
-that responds to a custom “FOO” HTTP method like this:
+ルートオブジェクトの`via()`は、GET, POST, PUT, DELETE, OPTIONSに限定されません。例えばWebDAVのHTTPリクエストに対応するといったカスタムHTTPメソッドを指定することも可能です。
+下記のように"FOO"といったようにカスタムHTTPメソッドに対応するルートを定義することができます。
 
     <?php
     $app = new \Slim\Slim();
