@@ -1,29 +1,30 @@
 ---
-title: Application Names and Scopes
+title: アプリケーション名とスコープ
 status: live
 ---
 
-When you build a Slim application you will enter various scopes in your code (e.g. global scope and function scope).
-You will likely need a reference to your Slim application in each scope. There are several ways to do this:
+Slimアプリケーションを構築すると、例えばグローバルスコープや関数スコープといった、様々なスコープが含まれます。
+それぞれの場所でSlimアプリケーションを参照することになりますが、それにはいくつかの方法があります:
 
-* Use application names with the Slim application's `getInstance()` static method
-* Curry an application instance into function scope with the `use` keyword
+* Slimアプリケーションの静的メソッド`getInstance()`によるアプリケーション名を使う方法
+* カリー化することで、`use`キーワードで関数スコープ内にアプリケーションを渡す方法
 
-### Application Names
+### アプリケーション名
 
-Every Slim application may be given a name. **This is optional**. Names help you get a reference to a Slim
-application instance in any scope throughout your code. Here is how you set and get an application’s name:
+それぞれのSlimアプリケーションに名前を与えることができます。**省略可能**。
+名前は、各スコープからのSlimアプリケーションのインスタンス参照を助けます。
+
 
     <?php
     $app = new \Slim\Slim();
     $app->setName('foo');
     $name = $app->getName(); // "foo"
 
-### Scope Resolution
+### スコープの解決
 
-So how do you get a reference to your Slim application? The example below demonstrates how to obtain a reference
-to a Slim application within a route callback function. The `$app` variable is used in the global scope to define
-the HTTP GET route. But the `$app` variable is also needed within the route’s callback scope to render a template.
+では実際どのようにSlimアプリケーションへ参照するのでしょう。以下の例は、ルートのコールバック関数内でSlimアプリケーションへの参照を取得しようとしています。
+`$app`変数はGETルートを定義するためにグローバルスコープで使用されていますが、テンプレートのレンダリングのためにコールバックのスコープ内でも必要とされています。
+
 
     <?php
     $app = new \Slim\Slim();
@@ -31,11 +32,11 @@ the HTTP GET route. But the `$app` variable is also needed within the route’s 
         $app->render('foo.php'); // <-- ERROR
     });
 
-This example fails because the `$app` variable is unavailable inside the route callback function.
+`$app`変数は、コールバック関数内で使用できないため、この例の実行結果は失敗となります。
 
-#### Currying
+#### カリー化
 
-We can inject the `$app` variable into the callback function with the `use` keyword:
+`use`キーワードを使いコールバック関数内に`$app`変数を注入することができます:
 
     <?php
     $app = new \Slim\Slim();
@@ -43,9 +44,9 @@ We can inject the `$app` variable into the callback function with the `use` keyw
         $app->render('foo.php'); // <-- SUCCESS
     });
 
-#### Fetch by Name
+#### 名前による取得
 
-You can use the Slim application's `getInstance()` static method, too:
+Slimアプリケーションの静的メソッド`getInstance()`を使うこともできます:
 
     <?php
     $app = new \Slim\Slim();
